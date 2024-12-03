@@ -933,8 +933,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13bb4691ac12f3441890636477db66ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ipTextField: {fileID: 328953987}
-  msgTextField: {fileID: 0}
+  ipTextField: {fileID: 328953989}
+  msgTextField: {fileID: 2029971435}
 --- !u!1 &417943843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,9 +1018,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 414158017}
-        m_TargetAssemblyTypeName: Client, Assembly-CSharp
-        m_MethodName: NewMessage
+      - m_Target: {fileID: 1659856904}
+        m_TargetAssemblyTypeName: UnityEngine.Component, UnityEngine
+        m_MethodName: SendMessage
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1820,6 +1820,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &861099095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 861099097}
+  - component: {fileID: 861099096}
+  m_Layer: 0
+  m_Name: Menu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &861099096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861099095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d6533c655d8974a9786d8c08ffec6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ipInputfield: {fileID: 0}
+--- !u!4 &861099097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861099095}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 581.4997, y: 224.20453, z: 2.5889022}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &910505363
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,7 +2102,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1568080393}
   m_HandleRect: {fileID: 1568080392}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3383,6 +3428,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627295990}
   m_CullTransparentMesh: 1
+--- !u!1 &1659856903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1659856905}
+  - component: {fileID: 1659856904}
+  m_Layer: 0
+  m_Name: Screen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1659856904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659856903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f50a7d2f03a99438113cbca4c93ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageView: {fileID: 141299713452091725, guid: 61d15883a69bd2b41839d6ed5f000da2, type: 3}
+  input: {fileID: 2029971435}
+  parent: {fileID: 1927143782}
+--- !u!4 &1659856905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659856903}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 581.4997, y: 224.20453, z: 2.5889022}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1667607211
 GameObject:
   m_ObjectHideFlags: 0
@@ -4464,7 +4556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e425f7ab63e4a3458ec0d3fd2423f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ipTextField: {fileID: 0}
+  ipTextField: {fileID: 1675318694}
 --- !u!1 &2130969008
 GameObject:
   m_ObjectHideFlags: 0
@@ -4608,3 +4700,5 @@ SceneRoots:
   - {fileID: 172418368}
   - {fileID: 414158016}
   - {fileID: 2109552278}
+  - {fileID: 1659856905}
+  - {fileID: 861099097}

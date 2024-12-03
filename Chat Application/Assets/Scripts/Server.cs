@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,10 +13,10 @@ public class Server : MonoBehaviour
     private TcpListener server;
     private TcpClient client;
     private List<TcpClient> clients;
+    private IPAddress address;
 
-    private int port = 1337;
-    private IPAddress serverIp = IPAddress.Parse("127.0.0.1");
-    public GameObject ipTextField;
+    private int port = 13337;
+    public TMP_InputField ipTextField;
 
     private bool isClientConnected = false;
     private Thread serverThread;
@@ -23,11 +24,21 @@ public class Server : MonoBehaviour
     private NetworkStream stream;
     private byte[] data;
 
-    public void StartServer()
-    {
-        serverIp = IPAddress.Parse(ipTextField.GetComponent<InputField>().text);
+    public static Action<string> onMessageReceived;
+    public static Action onConnected;
 
-        server = new TcpListener(serverIp, port);
+    public static Server instance;
+
+    public void Awake()
+    {
+        instance = this;
+    }
+
+    public void StartServer(string ip)
+    {
+        address = IPAddress.Parse(ip);
+
+        server = new TcpListener(address, port);
         server.Start();
         Debug.Log("SERVER :: Start");
         serverThread = new Thread(receiverThread);
@@ -53,8 +64,6 @@ public class Server : MonoBehaviour
                 int bytes = stream.Read(data, 0, data.Length);
                 msg = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
                 Debug.Log("SERVER :: Message received = " + msg);
-
-                
             }
             Thread.Sleep(100);
         }
@@ -62,7 +71,13 @@ public class Server : MonoBehaviour
 
     private void OnDisable()
     {
-        stream.Close();
-        server.Stop();
+        if (stream != null)
+        {
+            stream.Close();
+        }
+        if (server != null)
+        {
+            server.Stop();
+        }
     }
 }

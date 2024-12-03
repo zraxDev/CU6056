@@ -9,6 +9,15 @@ public class UIController : MonoBehaviour
     public GameObject serverMenu;
     public GameObject messageScreen;
 
+    private void Awake()
+    {
+        Server.onConnected += MessageScreen;
+        Client.onConnected += MessageScreen;
+
+        Server.onMessageReceived += showMessage;
+        Client.onMessageReceived += showMessage;
+    }
+
     public void MainMenu()
     {
         mainMenu.SetActive(true);
@@ -39,5 +48,10 @@ public class UIController : MonoBehaviour
         clientMenu.SetActive(false);
         serverMenu.SetActive(false);
         messageScreen.SetActive(true);
+    }
+
+    private void showMessage(string msg)
+    {
+        Screen.ShowMessage(msg);
     }
 }
