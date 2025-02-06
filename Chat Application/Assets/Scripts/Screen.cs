@@ -15,16 +15,16 @@ public class Screen : MonoBehaviour
         view.ShowMessage(message);
     }
 
-    public void SendMessage()
+    public void Send()
     {
         if (Menu.isServer)
         {
-            Server.instance.SendMessage(input.text);
+            Server.instance.Send(input.text);
             ShowMessage("Server : " + input.text);
         }
         else
         {
-            Client.instance.SendMessage(input.text);
+            Client.instance.Send(input.text);
             ShowMessage("Client : " + input.text);
         }
     }

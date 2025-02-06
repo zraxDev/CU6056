@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 using TMPro;
 using UnityEngine;
@@ -14,9 +15,9 @@ public class Server : MonoBehaviour
     private TcpClient client;
     private List<TcpClient> clients;
     private IPAddress address;
-
+    public string ipText;
     private int port = 13337;
-    public TMP_InputField ipTextField;
+    public bool isServerRunning = false;
 
     private bool isClientConnected = false;
     private Thread serverThread;
@@ -37,9 +38,7 @@ public class Server : MonoBehaviour
     public void StartServer(string ip)
     {
         address = IPAddress.Parse(ip);
-
-        server = new TcpListener(address, port);
-        server.Start();
+        ipText = ip;
         Debug.Log("SERVER :: Start");
         serverThread = new Thread(receiverThread);
         serverThread.Start();
@@ -47,29 +46,69 @@ public class Server : MonoBehaviour
 
     void receiverThread()
     {
-        while (true)
+        try
         {
-            if (isClientConnected == false)
+            server = new TcpListener(address, port);
+            server.Start();
+            isServerRunning = true;
+            Debug.Log("SERVER :: Started! with IP : " + ipText);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Server Creation Error ::" + e.Message);
+        }
+
+        while (isServerRunning)
+        {
+            if (!isClientConnected)
             {
                 client = server.AcceptTcpClient();
-                Debug.Log("SERVER :: Client Connected");
+                Debug.Log("SERVER :: Client Connected!");
                 isClientConnected = true;
                 stream = client.GetStream();
+                UnityMainThreadDispatcher.Instance().Enqueue(() => onConnected?.Invoke());
             }
             else
             {
-                //receive the messages
-                data = new byte[256];
-                string msg = string.Empty;
-                int bytes = stream.Read(data, 0, data.Length);
-                msg = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                Debug.Log("SERVER :: Message received = " + msg);
+                Byte[] bytes = new byte[1024];
+                int bytesRead = stream.Read(bytes, 0, bytes.Length);
+                if (bytesRead > 0)
+                {
+                    string msgFromClient = Encoding.ASCII.GetString(bytes, 0, bytesRead);
+                    //string senderName = userName;
+                    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                    {
+                        onMessageReceived?.Invoke("Client : " + msgFromClient);
+                        Debug.Log("Message from Client: " + msgFromClient);
+                    });
+                }
             }
             Thread.Sleep(100);
         }
     }
 
-    private void OnDisable()
+    public void Send(string msg)
+    {
+        try
+        {
+            Byte[] bytes = Encoding.ASCII.GetBytes(msg);
+            if (client.Connected)
+            {
+                NetworkStream stream = client.GetStream();
+                if (stream.CanWrite)
+                {
+                    stream.Write(bytes, 0, bytes.Length);
+                }
+            }
+            Debug.Log("Server Sent: " + msg);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error in sending data: " + e.Message);
+        }
+    }
+
+    private void OnDestroy()
     {
         if (stream != null)
         {
