@@ -206,9 +206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109552279}
-        m_TargetAssemblyTypeName: Server, Assembly-CSharp
-        m_MethodName: StartServer
+      - m_Target: {fileID: 861099096}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: HostServer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13bb4691ac12f3441890636477db66ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ipTextField: {fileID: 328953989}
+  ipText: 
   msgTextField: {fileID: 2029971435}
 --- !u!1 &417943843
 GameObject:
@@ -1019,9 +1019,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1659856904}
-        m_TargetAssemblyTypeName: UnityEngine.Component, UnityEngine
-        m_MethodName: SendMessage
-        m_Mode: 5
+        m_TargetAssemblyTypeName: Screen, Assembly-CSharp
+        m_MethodName: Send
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1068,6 +1068,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417943843}
   m_CullTransparentMesh: 1
+--- !u!1 &445076955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445076957}
+  - component: {fileID: 445076956}
+  m_Layer: 0
+  m_Name: MainThreadExecutor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &445076956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445076955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d442a7650de1a4e41b150b15c4913d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &445076957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445076955}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 581.4997, y: 224.20453, z: 2.5889022}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &472842995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,7 +1893,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d6533c655d8974a9786d8c08ffec6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ipInputfield: {fileID: 0}
+  serverIPInputfield: {fileID: 1675318694}
+  clientIPInputfield: {fileID: 328953989}
 --- !u!4 &861099097
 Transform:
   m_ObjectHideFlags: 0
@@ -2102,7 +2147,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1568080393}
   m_HandleRect: {fileID: 1568080392}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2503,6 +2548,7 @@ MonoBehaviour:
   clientMenu: {fileID: 1566941353}
   serverMenu: {fileID: 1379985058}
   messageScreen: {fileID: 70878120}
+  screen: {fileID: 1659856904}
 --- !u!1 &1190314089
 GameObject:
   m_ObjectHideFlags: 0
@@ -2946,9 +2992,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 414158017}
-        m_TargetAssemblyTypeName: Client, Assembly-CSharp
-        m_MethodName: ConnectToServer
+      - m_Target: {fileID: 861099096}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: JoinServer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4556,7 +4602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e425f7ab63e4a3458ec0d3fd2423f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ipTextField: {fileID: 1675318694}
+  ipText: 
+  isServerRunning: 0
 --- !u!1 &2130969008
 GameObject:
   m_ObjectHideFlags: 0
@@ -4702,3 +4749,4 @@ SceneRoots:
   - {fileID: 2109552278}
   - {fileID: 1659856905}
   - {fileID: 861099097}
+  - {fileID: 445076957}

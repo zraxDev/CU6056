@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
     public GameObject clientMenu;
     public GameObject serverMenu;
     public GameObject messageScreen;
+    public Screen screen;
 
     private void Awake()
     {
@@ -52,6 +53,6 @@ public class UIController : MonoBehaviour
 
     private void showMessage(string msg)
     {
-        Screen.ShowMessage(msg);
+        screen.ShowMessage(msg);
     }
 }

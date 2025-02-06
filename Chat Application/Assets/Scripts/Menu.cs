@@ -5,20 +5,19 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    public TMP_InputField ipInputfield;
+    public TMP_InputField serverIPInputfield;
+    public TMP_InputField clientIPInputfield;
     public static bool isServer = false;
 
-    // Start is called before the first frame update
-    void HostServer()
+    public void HostServer()
     {
-        Server.instance.StartServer(ipInputfield.text);
+        Server.instance.StartServer(serverIPInputfield.text);
         isServer = true;
     }
 
-    // Update is called once per frame
-    void JoinServer()
+    public void JoinServer()
     {
-        Client.instance.ConnectToServer(ipInputfield.text);
+        Client.instance.ConnectToServer(clientIPInputfield.text);
         isServer = false;
     }
 }

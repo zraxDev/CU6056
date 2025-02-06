@@ -1,13 +1,15 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MessageView : MonoBehaviour
 {
-    public TextMeshProUGUI Message;
+    public TextMeshProUGUI message;
     public void ShowMessage(string msg)
     {
-        Message.text = msg;
+        message.text = msg;
     }
 }
